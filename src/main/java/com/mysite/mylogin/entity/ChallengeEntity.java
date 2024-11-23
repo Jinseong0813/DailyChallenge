@@ -30,4 +30,7 @@ public class ChallengeEntity {
     private String status;
 
     private String comment;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserEntity userid;
 }

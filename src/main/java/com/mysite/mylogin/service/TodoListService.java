@@ -15,9 +15,11 @@ public class TodoListService {
     private final TodoListRepository todoListRepository;
 
     //  todolist 조회
-    public List<TodoListEntity> getTodoListRepository(UserEntity userid) {
+    public List<TodoListEntity> getTodoListRepository(String userid) {
         return todoListRepository.findUserid(userid);
     }
+    // todolist  다 조회
+//    public  List<TodoListEntity> getAllTodoListRepository(){ return todoListRepository.findAll();}
 
     //   todolist 저장
     public TodoListEntity addTodoItem(TodoListEntity todoListEntity) {

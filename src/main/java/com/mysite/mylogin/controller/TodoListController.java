@@ -19,12 +19,16 @@ public class TodoListController {
     private final TodoListService todoListService;
 
 
-//    할일 조회
+//    유저 조회
     @GetMapping("/{userid}")
-    public ResponseEntity<List<TodoListEntity>> getTodoListRepository(@PathVariable UserEntity userid){
+    public ResponseEntity<List<TodoListEntity>> getTodoListRepository(@PathVariable String userid){
         List<TodoListEntity> todoList = todoListService.getTodoListRepository(userid);
         return ResponseEntity.ok(todoList);
     }
+//    할일 조회
+//    @GetMapping
+//    public ResponseEntity<List<TodoListEntity>> getAllTodoListRepository(){ return ResponseEntity.ok(todoListService.getAllTodoListRepository());}
+
 // 할일 추가
     @PostMapping
     public ResponseEntity<TodoListEntity> addTodoItem(@RequestBody TodoListEntity todoListEntity){
