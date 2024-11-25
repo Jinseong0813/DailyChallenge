@@ -1,13 +1,15 @@
 package com.mysite.mylogin.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
-
-@Data
+@Getter
+@Setter
 public class LoginRequest {
 
     @NotBlank(message = "아이디를 입력해주세요")
@@ -16,8 +18,5 @@ public class LoginRequest {
     @NotBlank(message = "비밀번호를 입력해주세요")
     private String password;
 
-    // Getters and Setters
-
-
-
+ 
 }

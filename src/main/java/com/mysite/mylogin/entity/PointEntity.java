@@ -2,6 +2,8 @@ package com.mysite.mylogin.entity;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
@@ -14,7 +16,11 @@ import lombok.*;
 public class PointEntity {
 
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long pointId;
+    
+
+
     private int points;
 
 }
