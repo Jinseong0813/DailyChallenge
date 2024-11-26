@@ -3,12 +3,16 @@ package com.mysite.mylogin.service;
 
 import com.mysite.mylogin.dto.JoinRequest;
 import com.mysite.mylogin.dto.JoinResponse;
+import com.mysite.mylogin.entity.ThemeEntity;
 import com.mysite.mylogin.entity.UserEntity;
+import com.mysite.mylogin.entity.UserThemeEntity;
+import com.mysite.mylogin.repository.ThemeRepository;
 import com.mysite.mylogin.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -16,6 +20,7 @@ import java.util.UUID;
 public class JoinService {
 
     private final UserRepository userRepository;
+    private final ThemeRepository themeRepository; 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public JoinResponse joinProcess(JoinRequest request) {
@@ -37,6 +42,19 @@ public class JoinService {
         data.setMobile(request.getMobile());
         data.setEmail(request.getEmail());  // 이메일을 암호화하지 않음 (원본 이메일을 저장)
         data.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
+
+        // /기본 테마 설정
+
+        ThemeEntity defaultTheme = themeRepository.findById(1).orElse(null);
+        data.setTheme(defaultTheme);
+
+        //구매한 테마 테이블에 기본테마 자동추가
+        UserThemeEntity userTheme = new UserThemeEntity();
+        userTheme.setUser(data);
+        userTheme.setTheme(defaultTheme);
+
+
+
 
         // 기본적으로 USER 권한을 부여
         //data.getRoles().add("USER");  // "USER" 권한을 부여
