@@ -44,7 +44,6 @@ public class JoinService {
         data.setPassword(bCryptPasswordEncoder.encode(request.getPassword()));
 
         // /기본 테마 설정
-
         ThemeEntity defaultTheme = themeRepository.findById(1).orElse(null);
         data.setTheme(defaultTheme);
 

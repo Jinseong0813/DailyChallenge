@@ -28,5 +28,7 @@ public class UserupdateRequest {
 
     private String email;
 
+    private Integer theme;
+
 
 }
