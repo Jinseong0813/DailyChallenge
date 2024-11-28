@@ -1,5 +1,8 @@
 package com.mysite.mylogin.controller;
 
+import com.mysite.mylogin.dto.AddTodoListRequest;
+import com.mysite.mylogin.dto.TodoListRequest;
+import com.mysite.mylogin.dto.TodoListResponse;
 import com.mysite.mylogin.entity.TodoListEntity;
 import com.mysite.mylogin.service.TodoListService;
 import lombok.RequiredArgsConstructor;
@@ -23,23 +26,24 @@ public class TodoListController {
     }
 
     // 할 일 추가
-    @PostMapping
-    public ResponseEntity<TodoListEntity> addTodoItem(@RequestParam String userId, @RequestBody TodoListEntity todoListEntity) {
-        TodoListEntity savedTodo = todoListService.addTodoItem(userId, todoListEntity);
+    @PostMapping("/add/{userId}")
+    public ResponseEntity<TodoListResponse> addTodoItem(@PathVariable String userId, @RequestBody AddTodoListRequest addTodoListRequest) {
+        TodoListResponse savedTodo = todoListService.addTodoItem(userId, addTodoListRequest);
         return ResponseEntity.ok(savedTodo);
     }
 
     // 할 일 삭제
-    @DeleteMapping("/{todoListId}")
-    public ResponseEntity<Void> deleteTodoItem(@PathVariable Long todoListId) {
-        todoListService.deleteTodoItem(todoListId);
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/delete/{todoListId}")
+    public ResponseEntity<TodoListResponse> deleteTodoItem(@PathVariable Long todoListId) {
+        TodoListResponse delete = todoListService.deleteTodoItem(todoListId);
+        ResponseEntity.noContent().build();
+        return ResponseEntity.ok(delete);
     }
 
     // 할 일 업데이트
-    @PutMapping("/{todoListId}")
-    public ResponseEntity<TodoListEntity> updateTodoItem(@PathVariable Long todoListId, @RequestBody TodoListEntity updatedTodo) {
-        TodoListEntity updatedEntity = todoListService.updateTodoItem(todoListId, updatedTodo);
+    @PatchMapping("/update/{todoListId}")
+    public ResponseEntity<TodoListResponse> updateTodoItem(@PathVariable Long todoListId, @RequestBody TodoListRequest updatedTodo) {
+        TodoListResponse updatedEntity = todoListService.updateTodoItem(todoListId, updatedTodo);
         return ResponseEntity.ok(updatedEntity);
     }
 }
