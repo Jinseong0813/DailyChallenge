@@ -69,7 +69,6 @@ public class UserupdateService {
     }
 
 
-    
 
         // 수정된 사용자 정보 저장
         userRepository.save(userEntity);
@@ -77,6 +76,13 @@ public class UserupdateService {
         // 성공 메시지 포함된 UserupdateResponse 객체 반환
         return new UserupdateResponse("회원 정보가 성공적으로 수정되었습니다.");
     }
+
+
+    // ID로 사용자 조회
+    public Optional<UserEntity> getUserById(String userid) {
+        return userRepository.findById(userid); // 데이터베이스에서 사용자 조회
+    }
+
 }
 
 

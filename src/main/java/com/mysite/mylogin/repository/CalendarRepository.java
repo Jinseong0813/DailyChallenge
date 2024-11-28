@@ -1,5 +1,9 @@
-package com.mysite.mylogin.service;
+package com.mysite.mylogin.repository;
 
-public class CalendarRepository {
+import com.mysite.mylogin.entity.CalendarEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface CalendarRepository extends JpaRepository<CalendarEntity, Long> {
 
 }

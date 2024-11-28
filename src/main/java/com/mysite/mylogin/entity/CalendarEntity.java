@@ -1,11 +1,10 @@
 package com.mysite.mylogin.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -16,9 +15,24 @@ import java.time.LocalTime;
 public class CalendarEntity {
     @Id
     @Column(name = "calendar_id")
-    private int calendarId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long calendarId;
 
-    private LocalDate date;
-    private String DdayName;
+    @Column(nullable = false)
+    private LocalDateTime startTime;
+
+    @Column(nullable = false)
+    private LocalDateTime endTime;
+
+    @Column(nullable = false, length = 20)
+    private String title;
+
+    @Column(length = 255)
     private String comment;
+
+    @Column(nullable = false, length = 1, name = "alram_status")
+    private String alramStatus = "N";
+
+    @ManyToOne
+    private UserEntity userID;
 }
