@@ -34,7 +34,7 @@ public class UserEntity {
 
 
      // 기본 테마 외래 키 설정
-     @ManyToOne(fetch = FetchType.LAZY)  // 지연 로딩
+     @ManyToOne(fetch = FetchType.EAGER)  // 지연 로딩
      @JoinColumn(name = "themeid")  // 테마 테이블과의 외래 키
      private ThemeEntity theme;  // 기본 테마를 설정할 필드
 

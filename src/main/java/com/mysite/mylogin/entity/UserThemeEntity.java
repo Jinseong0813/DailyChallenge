@@ -23,5 +23,4 @@ public class UserThemeEntity {
     @JoinColumn(name = "themeid", nullable = false)
     private ThemeEntity theme;
 
-
 }

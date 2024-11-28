@@ -60,15 +60,17 @@ public class UserupdateService {
             if (userThemeOptional==null) {
                 return new UserupdateResponse("해당 테마는 유저가 소유하지 않은 테마입니다.");
                
+
             } else {
                 userEntity.setTheme(themeEntity); // 테마 업데이트
+                userRepository.save(userEntity);
                 return new UserupdateResponse(request.getTheme()+"번 테마로 변경되었습니다 :)");
             }
-    
     }
 
+
     
-    
+
         // 수정된 사용자 정보 저장
         userRepository.save(userEntity);
     
@@ -76,3 +78,5 @@ public class UserupdateService {
         return new UserupdateResponse("회원 정보가 성공적으로 수정되었습니다.");
     }
 }
+
+

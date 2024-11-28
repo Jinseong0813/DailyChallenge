@@ -5,6 +5,8 @@ import com.mysite.mylogin.entity.UserEntity;
 import com.mysite.mylogin.entity.UserThemeEntity;
 import com.mysite.mylogin.repository.ThemeRepository;
 import com.mysite.mylogin.repository.UserRepository;
+import com.mysite.mylogin.repository.UserThemeRepository;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ public class ThemeService {
 
     private final UserRepository userRepository;
     private final ThemeRepository themeRepository;
+    private final UserThemeRepository userthemerepository;
 
     // 테마 구매 처리
     public String purchaseTheme(String userId, int themeId) {
@@ -41,9 +44,11 @@ public class ThemeService {
         UserThemeEntity userTheme = new UserThemeEntity();
         userTheme.setUser(user);
         userTheme.setTheme(theme);
+        userthemerepository.save(userTheme);
 
         return   userId + "님 (" + themeId + ") 번쨰 테마 구매 성공하셨습니다!";
     }
+
 
     // 할일 완료 처리
     public String completeTask(String userId) {
