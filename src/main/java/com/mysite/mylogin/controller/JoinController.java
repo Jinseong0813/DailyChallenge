@@ -21,6 +21,7 @@ public class JoinController {
     @PostMapping("/join")
     public ResponseEntity<JoinResponse> joinProcess(@RequestBody JoinRequest request) {
         JoinResponse response = joinService.joinProcess(request);
+
         return ResponseEntity.ok().body(response);
     }
 }

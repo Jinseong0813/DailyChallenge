@@ -5,11 +5,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
-@Getter
+@Data
 public class JoinRequest {
 
 
@@ -33,7 +33,6 @@ public class JoinRequest {
 
 
     @Email(message = "올바른 이메일 주소를 입력해주세요")
- 
     @NotBlank
     private String email;
 

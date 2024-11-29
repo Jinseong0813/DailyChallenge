@@ -27,11 +27,15 @@ public class JoinService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public JoinResponse joinProcess(JoinRequest request) {
-        boolean isUser = userRepository.existsById(request.getUserid());
 
-        // 이미 유저 id가 존재할 경우 
+        boolean isUser = userRepository.existsById(request.getUserid());
         if (isUser) {
-            return new JoinResponse("이미 가입된 회원입니다.");
+            return new JoinResponse("이미 존재하는 아이디입니다.");
+        }
+
+        boolean isEmailExist = userRepository.existsByEmail(request.getEmail());
+        if (isEmailExist) {
+            return new JoinResponse("이미 존재하는 이메일입니다.");
         }
 
         // 비밀번호 같은지 확인
@@ -54,13 +58,13 @@ public class JoinService {
         userRepository.save(data);
 
 
-        ///유저가 구매한테마 저장하는 usertheme 엔티티에 디폴트 테마 추가 
+        ///유저가 구매한테마 저장하는 usertheme 엔티티에 디폴트 테마 추가
         UserThemeEntity userTheme = new UserThemeEntity();
         userTheme.setUser(data);
         userTheme.setTheme(defaultTheme);
-        userThemeRepository.save(userTheme); 
+        userThemeRepository.save(userTheme);
 
-        
+
 
         // 기본적으로 USER 권한을 부여
         //data.getRoles().add("USER");  // "USER" 권한을 부여
