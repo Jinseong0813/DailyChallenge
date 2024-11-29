@@ -33,6 +33,7 @@ public class JoinRequest {
 
 
     @Email(message = "올바른 이메일 주소를 입력해주세요")
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$", message = "유효한 이메일 형식이 아닙니다.")
     @NotBlank
     private String email;
 
