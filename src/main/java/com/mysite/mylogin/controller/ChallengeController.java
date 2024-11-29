@@ -5,8 +5,8 @@ import com.mysite.mylogin.dto.AddChallengeRequest;
 import com.mysite.mylogin.dto.ChallengeRequest;
 import com.mysite.mylogin.dto.ChallengeResponse;
 import com.mysite.mylogin.entity.ChallengeEntity;
-import com.mysite.mylogin.entity.UserEntity;
 import com.mysite.mylogin.service.ChallengeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ public class ChallengeController {
 
 //    챌린지 저장
 @PostMapping("/add/{userId}")
-    public ResponseEntity<ChallengeResponse> addChallenge(@PathVariable String userId, @RequestBody AddChallengeRequest addChallengeRequest) {
+    public ResponseEntity<ChallengeResponse> addChallenge(@PathVariable String userId, @RequestBody @Valid AddChallengeRequest addChallengeRequest) {
         ChallengeResponse saveChallenge = challengeService.addChallenge(userId , addChallengeRequest);
         return ResponseEntity.ok(saveChallenge);
     }
@@ -45,7 +45,5 @@ public class ChallengeController {
         ChallengeResponse updateChallenge = challengeService.updateChallenge(challengeId ,updatedChallenge);
         return ResponseEntity.ok(updateChallenge);
     }
-
-
 
 }

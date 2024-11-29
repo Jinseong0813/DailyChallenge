@@ -5,6 +5,7 @@ import com.mysite.mylogin.dto.TodoListRequest;
 import com.mysite.mylogin.dto.TodoListResponse;
 import com.mysite.mylogin.entity.TodoListEntity;
 import com.mysite.mylogin.service.TodoListService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class TodoListController {
 
     // 할 일 추가
     @PostMapping("/add/{userId}")
-    public ResponseEntity<TodoListResponse> addTodoItem(@PathVariable String userId, @RequestBody AddTodoListRequest addTodoListRequest) {
+    public ResponseEntity<TodoListResponse> addTodoItem(@PathVariable String userId, @RequestBody @Valid AddTodoListRequest addTodoListRequest) {
         TodoListResponse savedTodo = todoListService.addTodoItem(userId, addTodoListRequest);
         return ResponseEntity.ok(savedTodo);
     }

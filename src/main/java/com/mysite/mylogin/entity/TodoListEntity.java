@@ -30,7 +30,6 @@ public class TodoListEntity {
 
     private String favorite;
 
-
     private LocalDateTime alarm;
 
     @ManyToOne(fetch = FetchType.LAZY)
