@@ -40,6 +40,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 
     //토큰 의존성 추가
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
