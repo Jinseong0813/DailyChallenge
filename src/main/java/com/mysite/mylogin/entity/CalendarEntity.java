@@ -19,6 +19,12 @@ public class CalendarEntity {
     private Long calendarId;
 
     @Column(nullable = false)
+    private LocalDate startDate;
+
+    @Column(nullable = false)
+    private LocalDate endDate;
+
+    @Column(nullable = false)
     private LocalDateTime startTime;
 
     @Column(nullable = false)
@@ -34,5 +40,6 @@ public class CalendarEntity {
     private String alramStatus = "N";
 
     @ManyToOne
-    private UserEntity userID;
+    @JoinColumn(name = "userid", nullable = false)
+    private UserEntity userid;
 }

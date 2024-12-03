@@ -1,8 +1,10 @@
 package com.mysite.mylogin.entity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,7 +39,6 @@ public class UserEntity {
      @ManyToOne(fetch = FetchType.EAGER)  // 지연 로딩
      @JoinColumn(name = "themeid")  // 테마 테이블과의 외래 키
      private ThemeEntity theme;  // 기본 테마를 설정할 필드
-
 
 
 
