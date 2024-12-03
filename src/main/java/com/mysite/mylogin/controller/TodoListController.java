@@ -5,7 +5,6 @@ import com.mysite.mylogin.dto.TodoListRequest;
 import com.mysite.mylogin.dto.TodoListResponse;
 import com.mysite.mylogin.entity.TodoListEntity;
 import com.mysite.mylogin.service.TodoListService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +25,9 @@ public class TodoListController {
         return ResponseEntity.ok(todoList);
     }
 
-    // 할 일 추가
+    // 할 일 추가. repeattype이 있는경우 자동으로 반복메서드 실행됨
     @PostMapping("/add/{userId}")
-    public ResponseEntity<TodoListResponse> addTodoItem(@PathVariable String userId, @RequestBody @Valid AddTodoListRequest addTodoListRequest) {
+    public ResponseEntity<TodoListResponse> addTodoItem(@PathVariable String userId, @RequestBody AddTodoListRequest addTodoListRequest) {
         TodoListResponse savedTodo = todoListService.addTodoItem(userId, addTodoListRequest);
         return ResponseEntity.ok(savedTodo);
     }
@@ -47,4 +46,13 @@ public class TodoListController {
         TodoListResponse updatedEntity = todoListService.updateTodoItem(todoListId, updatedTodo);
         return ResponseEntity.ok(updatedEntity);
     }
+
+      // 최근 한 달 간 자주 사용된 할 일 TOP 5 조회
+      @GetMapping("/topused/{userId}")
+      public ResponseEntity<TodoListResponse> getTopUsedTodos(@PathVariable String userId) {
+          TodoListResponse topUsedTodos = todoListService.getTopUsedTodos(userId);
+          return ResponseEntity.ok(topUsedTodos);
+      }
+
+
 }
