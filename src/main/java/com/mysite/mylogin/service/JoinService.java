@@ -26,6 +26,10 @@ public class JoinService {
     private final UserThemeRepository userThemeRepository; 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    public UserEntity findUserById(String userId) {
+        return userRepository.findByUserid(userId).orElse(null); // userId로 사용자 조회, 없으면 null 반환
+    }
+
     public JoinResponse joinProcess(JoinRequest request) {
 
         boolean isUser = userRepository.existsById(request.getUserid());

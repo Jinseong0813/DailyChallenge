@@ -126,7 +126,7 @@ public class TodoListService {
     // 할 일 업데이트
     public TodoListResponse updateTodoItem(Long todoListId, TodoListRequest updatedTodo) {
         TodoListEntity existingTodo = todoListRepository.findById(todoListId)
-                .orElseThrow(() -> new RuntimeException("Todo item not found with id: " + todoListId));
+                .orElseThrow(() -> new RuntimeException("해당 아이디를 찾을 수가 없습니다.: " + todoListId));
 
         // 수정된 정보로 기존 할 일 수정
         if (updatedTodo.getTitle() != null) {
