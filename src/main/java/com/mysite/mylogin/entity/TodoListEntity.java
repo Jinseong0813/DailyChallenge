@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,7 +29,7 @@ public class TodoListEntity {
 
     private Integer repeatType;
 
-    private String favorite;
+    private Integer repeatCount=1;
 
     private LocalDateTime alarm;
 
@@ -36,4 +37,8 @@ public class TodoListEntity {
     @JoinColumn(name = "user_id", nullable = false)
 //    @JsonIgnore  // 직렬화 과정에서 user 필드를 무시하도록 추가
     private UserEntity userid;
+
+    @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate createdDate = LocalDate.now();  // 현재 날짜로 초기화
 }
