@@ -29,7 +29,7 @@ public class TodoListEntity {
 
     private Integer repeatType;
 
-    private Integer repeatCount=1;
+    private Integer repeatCount=0;
 
     private LocalDateTime alarm;
 

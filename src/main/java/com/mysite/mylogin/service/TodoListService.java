@@ -73,8 +73,6 @@ public class TodoListService {
         }
     }
 
-
-
     TodoListEntity todoListEntity = new TodoListEntity();
     todoListEntity.setUserid(user);
     todoListEntity.setTitle(newTitle);
@@ -83,15 +81,12 @@ public class TodoListService {
     todoListEntity.setDueDate(addTodoListRequest.getDueDate());
     todoListEntity.setRepeatType(addTodoListRequest.getRepeatType());
 
-
     // 만약 기존 제목이 같거나 비슷한 할일이 존재하면
     if (matchingTodo != null) {
         // 가장 작은 todo_list_id를 가진 기존 할일의 repeatCount를 1 증가시키기
         matchingTodo.setRepeatCount(matchingTodo.getRepeatCount() + 1);
         todoListRepository.save(matchingTodo); // 기존 할일의 repeatCount를 갱신
 
-
-        
 
     } else {
         // 새로운 할일은 기본 repeatCount 값으로 설정 (기본값은 1)
@@ -126,7 +121,7 @@ public class TodoListService {
     // 할 일 업데이트
     public TodoListResponse updateTodoItem(Long todoListId, TodoListRequest updatedTodo) {
         TodoListEntity existingTodo = todoListRepository.findById(todoListId)
-                .orElseThrow(() -> new RuntimeException("해당 아이디를 찾을 수가 없습니다.: " + todoListId));
+                .orElseThrow(() -> new RuntimeException("Todo item not found with id: " + todoListId));
 
         // 수정된 정보로 기존 할 일 수정
         if (updatedTodo.getTitle() != null) {
