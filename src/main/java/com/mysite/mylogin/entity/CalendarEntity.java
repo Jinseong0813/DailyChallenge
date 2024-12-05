@@ -25,10 +25,10 @@ public class CalendarEntity {
     private LocalDate endDate;
 
     @Column(nullable = false)
-    private LocalDateTime startTime;
+    private LocalTime startTime;
 
     @Column(nullable = false)
-    private LocalDateTime endTime;
+    private LocalTime endTime;
 
     @Column(nullable = false, length = 20)
     private String title;

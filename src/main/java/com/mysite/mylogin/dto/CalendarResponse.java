@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 @Data
@@ -13,9 +14,9 @@ import java.time.LocalDateTime;
 public class CalendarResponse {
     private Long calendarId; // 자동 증가된 ID (서버가 생성 후 반환)
 
-    private LocalDateTime startTime; // 시작 시간
+    private LocalTime startTime; // 시작 시간
 
-    private LocalDateTime endTime; // 종료 시간
+    private LocalTime endTime; // 종료 시간
 
     private LocalDate startDate; // 시작 날짜
 

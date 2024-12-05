@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -16,11 +17,11 @@ public class CalendarRequest {
 
     @NotNull(message = "Start time is required.")
     @DateTimeFormat(pattern = "HH:mm")
-    private LocalDateTime startTime; // 시작 시간
+    private LocalTime startTime; // 시작 시간
 
     @NotNull(message = "End time is required.")
     @DateTimeFormat(pattern = "HH:mm")
-    private LocalDateTime endTime; // 종료 시간
+    private LocalTime endTime; // 종료 시간
 
     @NotNull(message = "Start date is required.")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
