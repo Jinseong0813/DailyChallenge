@@ -25,7 +25,7 @@ public class SecurityConfig {
         // 로그인 후 접근할 수 있는 URL
         http
             .authorizeHttpRequests((auth) -> auth
-                .requestMatchers("/", "/login", "/loginProc", "/join", "/update", "/delete/**", "/update/**", "/complete/**","/purchase/**",  "/setthemes/**").permitAll()
+                .requestMatchers("/", "/login", "/loginProc", "/join", "/update", "/delete/**", "/update/**", "/complete/**","/purchase/**",  "/setthemes/**","/todolist/**").permitAll()
                 .requestMatchers(HttpMethod.PATCH, "/delete/**").authenticated()  // PATCH 요청에 인증 필요
                 .anyRequest().permitAll()  // 나머지 요청은 모두 허용
             );
